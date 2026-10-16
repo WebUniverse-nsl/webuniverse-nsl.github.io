@@ -71,7 +71,7 @@ const path = require('node:path');
   assert.equal(await nojs.locator('#functional-example').isVisible(),true);
   assert.equal(await nojs.locator('#visual-example').isVisible(),true);
   assert.equal(await nojs.locator('.ablation-row:visible').count(),4);
-  assert.equal(await nojs.locator('a[href*="huggingface.co/datasets/webcraft-NSL/WebUniverse-Mix"]').first().isVisible(),true);
+  assert.equal(await nojs.locator('a[href*="huggingface.co/datasets/WebUniverse-NSL/WebUniverse-Mix"]').first().isVisible(),true);
   assert.equal(await nojs.locator('.stage-tabs').isVisible(),false);
   assert.equal(await nojs.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true);
   assert.deepEqual(errors,[]);
