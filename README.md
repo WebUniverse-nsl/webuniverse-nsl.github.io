@@ -2,6 +2,8 @@
 
 Static project page for **WebUniverse: Scaling Verified Training Data for Agentic Web Development**.
 
+Project website: **https://webuniverse-nsl.github.io/**
+
 The site presents task synthesis, executable environments, verification, training data and model results. It is served directly by GitHub Pages, with no build step or runtime dependencies.
 
 ## Local preview
@@ -20,7 +22,7 @@ With Playwright installed and the preview server running, run `node tests/browse
 
 ## GitHub Pages
 
-Publish this directory as the repository root. In **Settings → Pages**, choose **Deploy from a branch**, `main`, `/ (root)`. The `.nojekyll` file enables direct static-file serving. Relative asset paths support both organization homepages and project URLs.
+Repository: `WebUniverse-nsl/webuniverse-nsl.github.io`. GitHub Pages deploys from `main`, `/ (root)`. Push changes to `main` to update the website. The `.nojekyll` file enables direct static-file serving. Relative asset paths support both organization homepages and project URLs.
 
 ## Content and maintenance
 
