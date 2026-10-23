@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Operator - Customer Service Portal</title>
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #F0E68C;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #6B8E23;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background-color: #556B2F;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: #4a5d25;
+}
+
+.nav-btn.active {
+  background-color: #808000;
+}
+
+.main-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.page h2 {
+  color: #6B8E23;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan-card {
+  background-color: #6B8E23;
+  color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+.plan-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.plan-price span {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.plan-features li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.plan-data, .plan-minutes, .plan-texts {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary {
+  background-color: #808000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #6b6b00;
+}
+
+.support-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .support-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.support-left, .support-right {
+  background-color: #6B8E23;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.support-left h3, .support-right h3 {
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.tickets-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.ticket-card {
+  background-color: #556B2F;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ticket-card:hover {
+  background-color: #4a5d25;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-header h4 {
+  color: white;
+}
+
+.ticket-subject {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.ticket-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.ticket-status.open {
+  background-color: #28a745;
+  color: white;
+}
+
+.ticket-status.in-progress {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.ticket-status.closed {
+  background-color: #6c757d;
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid #808000;
+}
+
+.customers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.customer-card {
+  background-color: #6B8E23;
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.customer-card h3 {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.customer-info {
+  margin-bottom: 0.5rem;
+}
+
+.customer-info label {
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.customer-info span {
+  font-weight: bold;
+}
+
+.customer-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.customer-status.active {
+  background-color: #28a745;
+}
+
+.customer-status.inactive {
+  background-color: #dc3545;
+}
+
+.customer-balance {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.customer-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.customer-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: opacity 0.3s;
+}
+
+.btn-view {
+  background-color: #808000;
+  color: white;
+}
+
+.btn-view:hover {
+  opacity: 0.8;
+}
+
+.btn-edit {
+  background-color: #556B2F;
+  color: white;
+}
+
+.btn-edit:hover {
+  opacity: 0.8;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #6B8E23;
+  color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-bottom: 1.5rem;
+}
+
+.modal-body p {
+  margin-bottom: 0.75rem;
+}
+
+.modal-body p strong {
+  color: #ccc;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-secondary {
+  background-color: #556B2F;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-secondary:hover {
+  background-color: #4a5d25;
+}
+
+/* Ticket Detail Modal */
+.ticket-detail {
+  background-color: #556B2F;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ticket-detail h4 {
+  margin-bottom: 0.5rem;
+}
+
+.ticket-detail p {
+  color: #ccc;
+}
+
+.status-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}</style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <h1>📱 Phone Operator Portal</h1>
+      <nav class="nav">
+        <button class="nav-btn active" data-page="plans">Service Plans</button>
+        <button class="nav-btn" data-page="support">Customer Support</button>
+        <button class="nav-btn" data-page="customers">Customers</button>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <!-- Service Plans Section -->
+      <section id="plans" class="page active">
+        <h2>Service Plans</h2>
+        <div class="plans-grid" id="plansGrid"></div>
+      </section>
+
+      <!-- Customer Support Section -->
+      <section id="support" class="page">
+        <h2>Customer Support</h2>
+        <div class="support-container">
+          <div class="support-left">
+            <h3>Support Tickets</h3>
+            <div class="tickets-list" id="ticketsList"></div>
+          </div>
+          <div class="support-right">
+            <h3>New Support Ticket</h3>
+            <form id="newTicketForm">
+              <div class="form-group">
+                <label for="customer">Customer Name</label>
+                <input type="text" id="customer" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn-primary">Create Ticket</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customers Section -->
+      <section id="customers" class="page">
+        <h2>Customer Directory</h2>
+        <div class="customers-list" id="customersList"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- The evaluated output had no app.js. Its inactive controls are preserved. -->
+</body>
+</html>

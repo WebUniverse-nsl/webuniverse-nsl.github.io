@@ -1,0 +1,17 @@
+benchmark,metric,training_trajectories_k,value,model
+Vision2Web,L1 score,0,51.7,Qwen3.5-35B-A3B (original model)
+Vision2Web,L1 score,5,63.9,fine-tuned on 5K trajectories
+Vision2Web,L1 score,10,66.2,fine-tuned on 10K trajectories
+Vision2Web,L1 score,15,68.3,Qwen3.5-WebUniverse (15K)
+WebGen-Bench,Accuracy (%),0,34.5,Qwen3.5-35B-A3B (original model)
+WebGen-Bench,Accuracy (%),5,49.1,fine-tuned on 5K trajectories
+WebGen-Bench,Accuracy (%),10,58.2,fine-tuned on 10K trajectories
+WebGen-Bench,Accuracy (%),15,63.9,Qwen3.5-WebUniverse (15K)
+Web-Bench,pass@1 (%),0,7.2,Qwen3.5-35B-A3B (original model)
+Web-Bench,pass@1 (%),5,11.7,fine-tuned on 5K trajectories
+Web-Bench,pass@1 (%),10,13.2,fine-tuned on 10K trajectories
+Web-Bench,pass@1 (%),15,13.9,Qwen3.5-WebUniverse (15K)
+Web-Bench,pass@2 (%),0,12.2,Qwen3.5-35B-A3B (original model)
+Web-Bench,pass@2 (%),5,18.0,fine-tuned on 5K trajectories
+Web-Bench,pass@2 (%),10,22.1,fine-tuned on 10K trajectories
+Web-Bench,pass@2 (%),15,23.1,Qwen3.5-WebUniverse (15K)
