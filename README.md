@@ -32,7 +32,7 @@ Repository: `WebUniverse-nsl/webuniverse-nsl.github.io`. GitHub Pages deploys fr
 - `assets/`: the pipeline figure, archived screenshots and vector comparisons derived from the paper.
 - `demos/`: self-contained browser previews of the recorded WebGen-Bench outputs.
 
-Environments, data and models currently require manual approval on Hugging Face. Update the two access notes when that changes. Environment links point to `https://huggingface.co/datasets/WebUniverse-NSL/WebUniverse-Env`; the paper entry remains “Coming soon” until its public link is supplied. Do not infer authors, affiliations or a publication identifier.
+Environments, data and models currently require manual approval on Hugging Face. Update the two access notes when that changes. Environment links point to `https://huggingface.co/datasets/WebUniverse-NSL/WebUniverse-Env`; the Paper button links to the published preprint at https://arxiv.org/abs/2610.33149. Do not infer authors, affiliations or a publication identifier.
 
 ## Sources and design references
 
